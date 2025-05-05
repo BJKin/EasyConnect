@@ -1,6 +1,31 @@
-// Code assistance: OpenAI's ChatGPT (2025)
+// "use client";
+// import { useSession } from "next-auth/react";
 
-"use client";
+// Define types to help TypeScript understand the session shape
+// type SessionWithRole = {
+//   user?: {
+//     name?: string;
+//     email?: string;
+//     role?: "admin" | "attendee" | "vendor";
+//   };
+// };
+
+// export default function SessionLayout({ children }: { children: React.ReactNode }) {
+//   const { data: session, status } = useSession();
+
+//   if (status === "loading") return <div>Loading...</div>;
+//   if (!session) return <div>Please sign in to access this page.</div>;
+
+//   const user = (session as SessionWithRole)?.user;
+
+//   return (
+//     <div className={user?.role === "admin" ? "admin-dashboard" : "user-dashboard"}>
+//       {children}
+//     </div>
+//   );
+// }
+
+
 
 import { useSession } from "next-auth/react";
 

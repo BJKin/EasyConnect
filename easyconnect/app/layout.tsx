@@ -1,5 +1,7 @@
 // Code assistance: OpenAI's ChatGPT (2025)
 
+"use client";
+
 import { SessionProvider } from "next-auth/react";
 import "./globals.css"; 
 import EasyConnectLogo from "@/components/EasyConnectLogo";

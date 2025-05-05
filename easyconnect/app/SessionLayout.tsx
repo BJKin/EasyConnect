@@ -1,7 +1,11 @@
 "use client";
-import { useSession } from "next-auth/react";
 
-// Define types to help TypeScript understand the session shape
+"use client";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+// Define a custom type so TS understands session.user.role
 type SessionWithRole = {
   user?: {
     name?: string;
@@ -12,9 +16,16 @@ type SessionWithRole = {
 
 export default function SessionLayout({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login"); // Redirect to login
+    }
+  }, [status, router]);
 
   if (status === "loading") return <div>Loading...</div>;
-  if (!session) return <div>Please sign in to access this page.</div>;
+  if (!session) return null; // Don’t flash the page before redirect
 
   const user = (session as SessionWithRole)?.user;
 
@@ -24,8 +35,6 @@ export default function SessionLayout({ children }: { children: React.ReactNode 
     </div>
   );
 }
-
-
 
 
 
